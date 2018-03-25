@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vk-aggregator</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<style>
+	body{
+		background: #e9ecef;
+		padding: 0 20px;
+	}
+	.main-form{
+		margin: 20px auto;
+		max-width: 800px;
+	}
+	.game-claim{
+		margin: 20px 0 10px;
+		font-size: 18px;
+		font-weight: 800;
+	}
+	.btn-send{
+		display: inline-block;
+	}
+	</style>
+</head>
+<body>
+	<div class="main-form wall">
+		<div class="form-group">
+			<div class="message-wrapper">
+				<label for="message">Текст:</label>
+				<textarea id="message" cols="30" rows="10" class="form-control" placeholder="Введите текст объявления. объем от 600 до 3500 знаков с пробелом"></textarea>
+			</div>
+			<p class="game-claim">Игровые требования</p>
+			<div class="gametitle-wrapper">
+				<label for="gametitle">Стиль повествования:</label>
+				<input id="gametitle" type="text" class="form-control">
+			</div>
+			<div class="postsize-wrapper">
+				<label for="postsize">Размер постов:</label>
+				<input id="postsize" type="text" class="form-control">
+			</div>
+			<div class="dynamic-wrapper">
+				<label for="dynamic">Динамичность игры:</label>
+				<input id="dynamic" type="text" class="form-control">
+			</div>
+			<div class="misc-wrapper">
+				<label for="misc">Дополнительно:</label>
+				<textarea id="misc" cols="30" rows="10" class="form-control"></textarea>
+			</div>
+		</div>
+		<div class="text-center">
+			<div class="btn btn-primary btn-send">Отправить</div>
+		</div>
+	</div>
+	<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+	<script>
+		$(document).ready(function(){
+
+		});
+	</script>
+</body>
+</html>
