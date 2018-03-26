@@ -22,34 +22,49 @@
 		display: inline-block;
 	}
 	</style>
+	<script src="https://vk.com/js/api/xd_connection.js?2" type="text/javascript"></script>
 </head>
 <body>
-	<div class="main-form wall">
+	<div class="main-form">
 		<div class="form-group">
-			<div class="message-wrapper">
-				<label for="message">Текст:</label>
-				<textarea id="message" cols="30" rows="10" class="form-control" placeholder="Введите текст объявления. объем от 600 до 3500 знаков с пробелом"></textarea>
-			</div>
-			<p class="game-claim">Игровые требования</p>
-			<div class="gametitle-wrapper">
-				<label for="gametitle">Стиль повествования:</label>
-				<input id="gametitle" type="text" class="form-control">
-			</div>
-			<div class="postsize-wrapper">
-				<label for="postsize">Размер постов:</label>
-				<input id="postsize" type="text" class="form-control">
-			</div>
-			<div class="dynamic-wrapper">
-				<label for="dynamic">Динамичность игры:</label>
-				<input id="dynamic" type="text" class="form-control">
-			</div>
-			<div class="misc-wrapper">
-				<label for="misc">Дополнительно:</label>
-				<textarea id="misc" cols="30" rows="10" class="form-control"></textarea>
-			</div>
-		</div>
-		<div class="text-center">
-			<div class="btn btn-primary btn-send">Отправить</div>
+			<form class="send-form" novalidate>
+				<div class="message-wrapper form-group">
+					<label for="message">Текст:</label>
+					<textarea id="message" cols="30" rows="10" class="form-control message" placeholder="Введите текст объявления. объем от 600 до 3500 знаков с пробелом" required></textarea>
+					<div class="invalid-feedback">
+						Данное поле должно содержать от 600 до 3500 знаков с пробелом.
+					</div>
+				</div>
+				<p class="game-claim">Игровые требования</p>
+				<div class="gametitle-wrapper form-group">
+					<label for="gametitle">Стиль повествования:</label>
+					<input id="gametitle" type="text" class="form-control error" required>
+					<div class="invalid-feedback">
+						Это поле не может быть пустым.
+					</div>
+				</div>
+				<div class="postsize-wrapper form-group">
+					<label for="postsize">Размер постов:</label>
+					<input id="postsize" type="text" class="form-control" required>
+					<div class="invalid-feedback">
+						Это поле не может быть пустым.
+					</div>
+				</div>
+				<div class="dynamic-wrapper form-group">
+					<label for="dynamic">Динамичность игры:</label>
+					<input id="dynamic" type="text" class="form-control" required>
+					<div class="invalid-feedback">
+						Это поле не может быть пустым.
+					</div>
+				</div>
+				<div class="misc-wrapper form-group">
+					<label for="misc">Дополнительно:</label>
+					<textarea id="misc" cols="30" rows="10" class="form-control"></textarea>
+				</div>
+				<div class="text-center form-group">
+					<button class="btn btn-primary btn-send">Отправить</button>
+				</div>
+			</form>
 		</div>
 	</div>
 	<script
@@ -60,7 +75,55 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
 	<script>
 		$(document).ready(function(){
+			VK.init(function() { 
+				$('.send-form').on('submit', function(event){
+					event.preventDefault();
 
+					var checked = true;
+
+					$('.form-control').each(function(index, item){
+						if($(this).attr('required') && !$(this).val()){
+							$(this).addClass('is-invalid');
+							checked = false;
+						}else{
+							$(this).addClass('is-valid');
+						}
+					});
+
+					var messageLength = $('#message').val().length;
+
+					if(messageLength < 600 || messageLength > 3500){
+						$('#message').removeClass('is-valid');
+						$('#message').addClass('is-invalid');
+						checked = false;
+					}
+
+					if(checked){
+						var message = $('#message').val(),
+							gametitle = $('#gametitle').val(),
+							postsize = $('#postsize').val(),
+							dynamic = $('#dynamic').val(),
+							misc = $('#misc').val();
+
+
+							    VK.api("wall.post", {
+							    	"owner_id": "164154960",
+							    	"message": "Hello!", 
+							    	"v":"5.73",
+							    	"from_group":"0"
+							    }, function (data) {alert("Post ID:" + data.response.post_id);
+								});
+					}
+				});
+
+				$('.form-control').on('keydown', function(){
+					$(this).removeClass('is-invalid');
+				});
+
+			}, function() { 
+			     // API initialization failed 
+			     // Can reload page here 
+			}, '5.73'); 
 		});
 	</script>
 </body>
