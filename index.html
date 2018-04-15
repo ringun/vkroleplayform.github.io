@@ -105,14 +105,22 @@
 							dynamic = $('#dynamic').val(),
 							misc = $('#misc').val();
 
+						var main_message = 
+							message + ' ' + 
+							postsize + ' ' + 
+							message + ' ' + 
+							dynamic + ' ' + 
+							misc;
 
-							    VK.api("wall.post", {
-							    	"owner_id": "164154960",
-							    	"message": "Hello!", 
-							    	"v":"5.73",
-							    	"from_group":"0"
-							    }, function (data) {alert("Post ID:" + data.response.post_id);
-								});
+							VK.api("wall.post", {
+									"owner_id": "164154960",
+									"message": main_message, 
+									"v":"5.73",
+									"from_group":"0"
+							    }, function (data) {
+							    	alert("Post ID:" + data.response.post_id
+							    		);
+							});
 					}
 				});
 
