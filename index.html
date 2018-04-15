@@ -100,38 +100,37 @@
 					checked = true;
 
 					if(checked){
-						var message = $('#message').val(),
-							gametitle = $('#gametitle').val(),
-							postsize = $('#postsize').val(),
-							dynamic = $('#dynamic').val(),
-							misc = $('#misc').val();
-
-						var user_url = 'test';
 
 						VK.api("users.get", {
 								"v":"5.73"
 						    }, function (data) {
-						    	user_url = data.response[0].id;
-						    	console.log(user_url);
-						});
 
-						var main_message = 
-							message + ' \n ' + 
-							postsize + ' \n ' + 
-							dynamic + ' \n ' + 
-							user_url + ' \n ' +
-							misc;
+						    	var user_url = data.response[0].id;
 
-							console.log(main_message);
+						    	var message = $('#message').val(),
+									gametitle = $('#gametitle').val(),
+									postsize = $('#postsize').val(),
+									dynamic = $('#dynamic').val(),
+									misc = $('#misc').val();
 
-							VK.api("wall.post", {
-									"owner_id": "-164154960",
-									"message": main_message, 
-									"v":"5.73"
-							    }, function (data) {
-							    	console.log(data);
-							    	alert("Post ID:" + data.response.post_id
-							    		);
+								var main_message = 
+									user_url + ' \n ' +
+									message + ' \n ' + 
+									postsize + ' \n ' + 
+									dynamic + ' \n ' + 
+									misc;
+
+									console.log(main_message);
+
+									VK.api("wall.post", {
+											"owner_id": "-164154960",
+											"message": main_message, 
+											"v":"5.73"
+									    }, function (data) {
+									    	console.log(data);
+									    	alert("Post ID:" + data.response.post_id
+									    		);
+									});
 							});
 					}
 				});
