@@ -97,6 +97,7 @@
 						$('#message').addClass('is-invalid');
 						checked = false;
 					}
+					checked = true;
 
 					if(checked){
 						var message = $('#message').val(),
@@ -110,7 +111,7 @@
 						VK.api("users.get", {
 								"v":"5.73"
 						    }, function (data) {
-						    	user_url = ' https://vk.com/id'+data.response[0].id;
+						    	user_url = data.response[0].id;
 						    	console.log(user_url);
 						});
 
