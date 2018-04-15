@@ -110,9 +110,7 @@
 						VK.api("users.get", {
 								"v":"5.73"
 						    }, function (data) {
-						    	console.log(data);
-						    	console.log(data.response[0].id);
-						    	user_url = 'https://vk.com/id'+data.response[0].id;
+						    	user_url = 'vk.com/id'+data.response[0].id;
 						    	console.log(user_url);
 						});
 
