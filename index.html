@@ -105,7 +105,16 @@
 							dynamic = $('#dynamic').val(),
 							misc = $('#misc').val();
 
+						var user_url = '';
+
+						VK.api("users.get", {
+								"v":"5.73"
+						    }, function (data) {
+						    	user_id = 'https://vk.com/id'+data.user_id;
+						});
+
 						var main_message = 
+							user_url + '\n\n' +
 							message + '\n' + 
 							postsize + '\n' + 
 							dynamic + '\n' + 
