@@ -110,15 +110,15 @@
 						VK.api("users.get", {
 								"v":"5.73"
 						    }, function (data) {
-						    	user_url = 'https://vk.com/id'+data.response[0].id;
+						    	user_url = ' https://vk.com/id'+data.response[0].id;
 						    	console.log(user_url);
 						});
 
 						var main_message = 
-							user_url + ' \n ' +
 							message + ' \n ' + 
 							postsize + ' \n ' + 
 							dynamic + ' \n ' + 
+							user_url + ' \n ' +
 							misc;
 
 							console.log(main_message);
