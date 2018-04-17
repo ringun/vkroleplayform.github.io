@@ -83,7 +83,7 @@
 		$(document).ready(function(){
 			VK.init(function() { 
 
-				$('#message').on('change', function(e){
+				$('#message').keyup(function(e){
 					var length = $(this).val().length;
 					$('.message-count').text(length);
 				});
